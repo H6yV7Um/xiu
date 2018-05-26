@@ -7,12 +7,7 @@
 			<!-- <mt-button slot="right" @click="getUserInfo">
 				<img src="./assets/touxiang.png" alt="" style="height:70%;vertical-align:middle">
 			</mt-button> -->
-      <!-- <section class="search">
-				<div class="searchtitle">课程搜索</div>
-				<div class="searchinput"><input name="searchname" placeholder="请输入课程标题">
-				</div>
-				<div class="searchbtn"><img src="./assets/search.png" alt="" @click="goSearch"></div>
-			</section> -->
+
 		</mt-header>
 		<div class="">
 			<section class="swipe">
@@ -41,7 +36,11 @@
 				<div class="searchbtn"><img src="./assets/search.png" alt="" @click="goSearch"></div>
 			</section> -->
 			<section class="course">
-				<div class="c-title">热门课程</div>
+				<div class="c-title">
+          <span>
+              热门课程
+          </span>
+        </div>
 				<div class="c-list-x">
 					<div :style="navListStyle" class="c-list-x-wrap">
 						<div class="image-box" @click="toDetail(item)" v-for="item in hotList" :key="item.id">
@@ -52,13 +51,13 @@
 			</section>
 
 			<section class="course">
-				<div class="c-title i-flex">
-					<div class="i-flex1">
-						最新课程
-					</div>
-					<div class="i-flex1 n-more" @click="toList">
+				<div class="c-title">
+					<!-- <div class="i-flex1"> -->
+						<span>最新课程</span>
+					<!-- </div> -->
+					<!-- <div class="i-flex1 n-more" @click="toList">
 						查看更多
-					</div>
+					</div> -->
 				</div>
 				<div class="c-list-y">
 					<div class="c-l-item" @click="toDetail(item)" v-for="item in newList" :key="item.id">
@@ -284,9 +283,19 @@ html{
 	margin-top: 15px;
 }
 .c-title{
-	padding: 10px;
 	font-size: 15px;
 	background-color: #fff;
+  background:url(./assets/images/title_bg.png);
+  text-align:center;
+  padding:10px 0;
+}
+.c-title span{
+  margin:0 auto;
+  display: block;
+  background-color: #fff;
+  width:125px;
+	font-size: 16px;
+  text-align:center;
 }
 .c-list-x,.c-list-y{
 	margin-top: 1px;
