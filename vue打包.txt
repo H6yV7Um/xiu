@@ -1,0 +1,21 @@
+mint-ui,vue
+
+
+开发环境
+1、安装node.js
+2、安装vue-cli（vue官网有详细步骤）
+3、解压H5项目，进入根目录，npm install
+4、npm run dev
+5、启动完成，监听(http://127.0.0.1:9000)
+
+
+发布: 
+
+修改config中pord.env.js 配置数据, 
+
+src/modules/common.js  修改APP_key
+
+执行 npm run build，dist目录中是发布版本
+ 
+
+本地浏览：npm run dev
