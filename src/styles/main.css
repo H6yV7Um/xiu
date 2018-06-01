@@ -170,3 +170,46 @@ a{
 #app .mint-header.is-fixed{
   z-index: 9999999;
 }
+.mint-swipe{
+  height: 240px !important;
+}
+.mint-tabbar > .mint-tab-item.is-selected {
+  background-color: #fff !important;
+  color: #d73435 !important;
+}
+.mint-tab-item-icon {
+  width: 22px !important;
+  height: 22px !important;
+  margin: 0 auto 5px !important;
+}
+.mint-tabbar {
+background-color: #ffffff !important;
+border-top:1px solid #e1e1e1 !important;
+}
+
+.downloadApp{
+  position:fixed;
+  bottom:54px;
+  width:100%;
+  height:45px;
+  background-color:#3b3941;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 10px;
+  opacity: 0.8;
+}
+.downloadlogo{
+  display:flex;
+  align-items:center;
+  color:#ffffff;
+  font-size:16px;
+}
+.downloadbtn{
+  display:block;
+  padding:6px;
+  background-color:#df2626;
+  color:#ffffff;
+  border-radius:4px;
+  font-size:12px;
+}

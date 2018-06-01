@@ -2,23 +2,23 @@
 	<div id="app">
 		<mt-header title="课 程">
 			<mt-button icon="back" slot="left" @click="toBack"></mt-button>
-			<mt-button slot="right" @click="getUserInfo">
-				<img src="./assets/touxiang.png" alt="" style="height:70%;vertical-align:middle">
-			</mt-button>
+			<!-- <mt-button slot="right" @click="getSearch">
+				<img src="./assets/listsearch_03.png" alt="" style="height:45%;vertical-align:middle">
+			</mt-button> -->
 		</mt-header>
-		<div class="">
+		<div class="" style="margin-bottom: 68px;">
 				<section class="nav">
 					<div class="nav-col">
 						<ul class="nav-wrap" :style="topicUl" id="topicUl">
 							<li class="item-name item">分类</li>
 							<li class="item">
-								<router-link :to="`/list/000${getRouterHash()}`" replace>
+								<router-link :to="`/list/000?lecturer=${getRouterHash()}`" exact replace>
 									<div>不限</div>
 									<p class="points"></p>
 								</router-link>
 							</li>
 							<li class="item" v-for="item in result_list" :key="item.id">
-								<router-link :to="`/list/${item.id}${getRouterHash()}`" replace>
+								<router-link :to="`/list/${item.id}?lecturer=${getRouterHash()}`" exact replace>
 									<div>{{ item.categoryName }}</div>
 									<p class="points"></p>
 								</router-link>
@@ -29,13 +29,13 @@
 						<ul class="nav-wrap" :style="userUl" id="userUl">
 							<li class="item item-name">讲师</li>
 							<li class="item">
-								<router-link :to="`${getRouterPath()}#000`" replace>
+								<router-link :to="`${getRouterPath()}?lecturer=000`" exact replace>
 									<div>不限</div>
 									<p class="points"></p>
 								</router-link>
 							</li>
 							<li class="item" v-for="item in user_list" :key="item.id">
-								<router-link :to="`${getRouterPath()}#${item.id}`" exact replace>
+								<router-link :to="`${getRouterPath()}?lecturer=${item.id}`" exact replace>
 									<div>{{ item.lecturerName }}</div>
 									<p class="points"></p>
 								</router-link>
@@ -46,8 +46,39 @@
 				<section class="list">
 					<router-view v-if="refresh"></router-view>
 				</section>
-
 		</div>
+    <section>
+			<mt-tabbar fixed>
+			  <mt-tab-item id="one" href="index.html?id=one">
+				 <img slot="icon" src="../../assets/home1_03.png">
+			    首页
+			  </mt-tab-item>
+			  <mt-tab-item id="two" href="index.html?id=two">
+				    <img  slot="icon" src="../../assets/kaihu1_05.png">
+			    开户
+			  </mt-tab-item>
+			  <mt-tab-item id="three" href="index.html?id=three">
+				    <img slot="icon" src="../../assets/zixun1_07.png">
+			    咨询
+			  </mt-tab-item>
+			  <mt-tab-item id="four" href="index.html?id=four">
+				    <img  slot="icon" src="../../assets/me1_09.png">
+			    我的
+			  </mt-tab-item>
+			</mt-tabbar>
+		</section>
+    <section>
+			<div class="downloadApp">
+				<div class="downloadlogo">
+         <img  src="../../assets/close.png" height="15px" style="" @click="closedownload">
+					<img src="../../assets/icon58.png" height="28" style="border-radius:5px;margin-right:5px;margin-left:10px">
+          <div style="width:120px">东证赢家</div>
+				</div>
+				<div class="downloadbtn">
+					<a href="https://www.dzqh.com.cn/orient/html/app/soft.jsp">下载APP</a>
+				</div>
+			</div>
+		</section>
 	</div>
 </template>
 
@@ -57,11 +88,16 @@ import List from '@/components/CourseList'
 import { Header, Indicator, Loadmore, MessageBox, Button } from 'mint-ui'
 import Common from '@/modules/common'
 import $ from 'jquery'
+import { Tabbar, TabItem,TabContainer, TabContainerItem } from 'mint-ui'
+//底部菜单
+Vue.component(Tabbar.name, Tabbar)
+Vue.component(TabItem.name, TabItem)
 
 Vue.component(Header.name, Header)
 Vue.component(Button.name, Button)
 Vue.component(Loadmore.name, Loadmore)
 Vue.component(List.name, List)
+
 
 export default {
 	name: 'list',
@@ -93,8 +129,9 @@ export default {
 		toBack () {
 			window.history.back()
 		},
-		getUserInfo () {
-			window.location.href = 'user.html'
+		getSearch () {
+      localStorage.removeItem('HistorySearch');
+			window.location.href = 'searchList.html'
 		},
 		queryTopic () {
 			let paras = ''
@@ -164,11 +201,24 @@ export default {
 			}, 2000)
 		},
 		getRouterHash () {
-			return this.$route.hash
+      return  this.getQueryLecturer()
 		},
 		getRouterPath () {
 			return this.$route.path
-		}
+    },
+    getQueryLecturer(name) {
+     var a = window.location.href;
+     var param = a.split("?")[1]
+     var url = param.split("=")[1]
+     if(url){
+        return url
+     }else{
+       return ''
+     }
+    },
+    closedownload () {
+			$('.downloadApp').hide();
+    }
 	}
 }
 </script>
@@ -228,4 +278,5 @@ export default {
 	border-radius: 100%;
 	transform: translate(-3px)
 }
+
 </style>

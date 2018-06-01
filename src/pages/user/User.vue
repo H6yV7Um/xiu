@@ -29,6 +29,8 @@
 		<div class="bottom">
 			&copy; 2017 上海东证期货有限公司 版权所有 沪ICP备08001760号
 		</div>
+    <section>
+		</section>
 	</div>
 </template>
 
@@ -38,8 +40,10 @@ import { Button, Header, MessageBox, Indicator } from 'mint-ui'
 import $ from 'jquery'
 import Common from '@/modules/common'
 
+
 Vue.component(Header.name, Header)
 Vue.component(Button.name, Button)
+
 export default {
 	name: 'login',
 	data () {
@@ -123,6 +127,9 @@ export default {
 		},
 		signUp () {
 			window.location.href = 'login.html?n_url=back'
+    },
+    getindex () {
+			window.location.href = 'index.html'
 		}
 	}
 }

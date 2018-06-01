@@ -7,8 +7,9 @@
 //   API_URL443: '"http://dzwx.yidesign.cn"',//微信
 //   WX_APP_ID: '"wx7013a8509c7ea413"',//东证微信
 //   APP_KEY: '"orient_show_key_20180326"',
-//   // APP_SECRET: '"9e787f77f3774fa7ac053321ed556bb4"'
+//   APP_SECRET: '"9e787f77f3774fa7ac053321ed556bb4"'
 // }
+//生产环境
 'use strict'
 module.exports = {
   NODE_ENV: '"production"',

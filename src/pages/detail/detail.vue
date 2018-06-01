@@ -70,6 +70,38 @@
 		<!-- <mt-popup v-model="popupVisible" position="right">
 				<login @close="closeLogin"></login>
 		</mt-popup> -->
+    <section id="indexmenu">
+			<mt-tabbar fixed>
+			  <mt-tab-item id="one" href="index.html?id=one">
+				 <img slot="icon" src="../../assets/home1_03.png">
+			    首页
+			  </mt-tab-item>
+			  <mt-tab-item id="two" href="index.html?id=two">
+				    <img  slot="icon" src="../../assets/kaihu1_05.png">
+			    开户
+			  </mt-tab-item>
+			  <mt-tab-item id="three" href="index.html?id=three">
+				    <img slot="icon" src="../../assets/zixun1_07.png">
+			    咨询
+			  </mt-tab-item>
+			  <mt-tab-item id="four" href="index.html?id=four">
+				    <img  slot="icon" src="../../assets/me1_09.png">
+			    我的
+			  </mt-tab-item>
+			</mt-tabbar>
+		</section>
+    <section>
+			<div class="downloadApp">
+				<div class="downloadlogo">
+         <img  src="../../assets/close.png" height="15px" style="" @click="closedownload">
+					<img src="../../assets/icon58.png" height="28" style="border-radius:5px;margin-right:5px;margin-left:10px">
+          <div style="width:120px">东证赢家</div>
+				</div>
+				<div class="downloadbtn">
+					<a href="https://www.dzqh.com.cn/orient/html/app/soft.jsp">下载APP</a>
+				</div>
+			</div>
+		</section>
 	</div>
 </template>
 
@@ -84,6 +116,10 @@ import $ from 'jquery'
 import Common from '@/modules/common'
 import utils from '@/modules/utils'
 
+import { Tabbar } from 'mint-ui'
+//底部菜单
+Vue.component(Tabbar.name, Tabbar)
+
 Vue.component(TabContainer.name, TabContainer)
 // Vue.component(Login.name, Login)
 Vue.component(TabContainerItem.name, TabContainerItem)
@@ -94,6 +130,7 @@ Vue.component(Button.name, Button)
 Vue.component(List.name, List)
 Vue.component(Meeting.name, Meeting)
 Vue.component(Popup.name, Popup)
+
 
 export default {
 	name: 'detail',
@@ -139,7 +176,10 @@ export default {
 	methods: {
 		closeLogin () {
 			this.popupVisible = false
-		},
+    },
+    closedownload () {
+			$('.downloadApp').hide();
+    },
 		_query (url, success) {
 			Indicator.open()
 			$.ajax({
@@ -197,7 +237,7 @@ export default {
 			window.location.href = 'detail.html'
 		},
 		getUserInfo () {
-			window.location.href = 'user.html'
+			window.location.href = 'index.html?id=four'
 		},
 		joinMetting () {
 			// let vm = this
@@ -479,7 +519,7 @@ export default {
 							//identifierNick为登录用户昵称(没有设置时，为帐号)，无登录态时为空
 							webim.Log.info('webim登录成功');
 							applyJoinBigGroup(avChatRoomId); //加入大群
-							
+
 							//hideDiscussForm(); //隐藏评论表单
 							initEmotionUL(); //初始化表情
 					},
@@ -1365,7 +1405,7 @@ html{
 }
 .mint-msgbox-wrapper .mint-msgbox{
 	z-index:5000;
-	top: auto; 
+	top: auto;
 	bottom: 0;
 }
 #app .mint-header{
@@ -1465,5 +1505,34 @@ html{
 .content{
 	color: #777;
 	line-height: 2;
+}
+.downloadApp{
+  position:fixed;
+  bottom:54px;
+  width:100%;
+  height:45px;
+  background-color:#3b3941;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 10px;
+  opacity: 0.8;
+}
+.downloadlogo{
+  display:flex;
+  align-items:center;
+  color:#ffffff;
+  font-size:16px;
+}
+.downloadbtn{
+  display:block;
+  padding:6px;
+  background-color:#df2626;
+  color:#ffffff;
+  border-radius:4px;
+  font-size:12px;
+}
+#indexmenu .mint-tab-item-label{
+  font-size: 10px;
 }
 </style>
